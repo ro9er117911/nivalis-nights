@@ -43,6 +43,7 @@ function toast(msg) {
 }
 
 // ---------- sections ----------
+const bi = (zh, en) => en && en !== zh ? `${esc(zh)} <span class="muted en">${esc(en)}</span>` : esc(zh);
 const empty = (what, say) => `<div class="empty"><span>還沒有${esc(what)}。</span><span>傳給 Claude：<b>${esc(say)}</b></span></div>`;
 
 function renderHeader(data) {
@@ -98,7 +99,7 @@ function renderOverlap(a) {
     i.flags.includes('unknown') ? '<span class="tag warn">名字對不到</span>' : '',
   ].join('');
   $('overlap').innerHTML = `<div class="table-wrap"><table><thead><tr><th>食材</th><th class="n">幾道菜</th><th class="n">每天要用</th><th class="n">庫存</th><th>最便宜</th><th class="n">壽命格</th></tr></thead><tbody>${
-    a.ingredients.map(i => `<tr><td>${esc(i.name)}<span class="ovl" aria-hidden="true">${'<i></i>'.repeat(Math.min(i.overlap, 8))}</span>${tagFor(i) ? `<div class="tags">${tagFor(i)}</div>` : ''}</td>
+    a.ingredients.map(i => `<tr><td>${bi(i.name, i.en)}<span class="ovl" aria-hidden="true">${'<i></i>'.repeat(Math.min(i.overlap, 8))}</span>${tagFor(i) ? `<div class="tags">${tagFor(i)}</div>` : ''}</td>
       <td class="n">${i.overlap}</td><td class="n">${fmt(i.need)}</td><td class="n">${fmt(i.onHand)}</td>
       <td>${i.cheapest ? `${fmt(i.cheapest.price)} <span class="muted">${esc(i.cheapest.vendor)}${i.cheapest.district ? '·' + esc(i.cheapest.district) : ''}</span>` : (i.base !== null ? `<span class="muted">基準 ${fmt(i.base)}</span>` : '—')}</td>
       <td class="n">${i.shelf ?? '—'}${i.fridge ? ' ❄' : ''}</td></tr>`).join('')
@@ -111,7 +112,7 @@ function renderDishes(a) {
   const anyEst = a.dishes.some(d => d.est);
   $('dishNote').textContent = anyEst ? '「估」= 用基準價估算，還沒有實際進價' : '';
   $('dishes').innerHTML = `<div class="table-wrap"><table><thead><tr><th>菜</th><th class="n">售價</th><th class="n">食材成本</th><th class="n">毛利</th><th class="n">成本占比</th><th class="n">日賣</th></tr></thead><tbody>${
-    a.dishes.map(d => `<tr><td>${esc(d.name)}${d.onMenu ? '' : ' <span class="muted">（沒上架）</span>'}${d.missing ? ` <span class="tag warn">缺 ${d.missing} 項價</span>` : ''}${d.onMenu && d.margin !== null && d.margin <= 0 ? ' <span class="tag bad">賠錢</span>' : ''}</td>
+    a.dishes.map(d => `<tr><td>${bi(d.name, d.en)}${d.onMenu ? '' : ' <span class="muted">（沒上架）</span>'}${d.missing ? ` <span class="tag warn">缺 ${d.missing} 項價</span>` : ''}${d.onMenu && d.margin !== null && d.margin <= 0 ? ' <span class="tag bad">賠錢</span>' : ''}</td>
       <td class="n">${fmt(d.price)}</td><td class="n">${fmt(d.cost)}${d.est ? '<span class="est">估</span>' : ''}</td><td class="n">${fmt(d.margin)}</td>
       <td class="n">${d.pct === null ? '—' : Math.round(d.pct * 100) + '%'}</td><td class="n">${fmt(d.sold)}</td></tr>`).join('')
   }</tbody></table></div>${a.dailyFood !== null ? `<p class="muted small">照日賣份數，每天食材約 ${fmt(a.dailyFood)}${a.dailyFoodEst ? '（含估算）' : ''}。</p>` : ''}`;
@@ -179,14 +180,27 @@ function renderLog(data) {
   $('log').innerHTML = log.map(l => `<li><span class="mono">${esc(l.date)}</span> ${esc(l.note)}</li>`).join('') || '<li>還沒有紀錄</li>';
 }
 
-// ---------- reference ----------
-let REF = { ings: [] }, refSort = 'name';
+// ---------- reference (registry) ----------
+let REG = { items: [] }, refSort = 'name';
 function renderRef() {
-  const q = $('refQ').value.trim().toLowerCase();
-  let rows = REF.ings.filter(r => !q || r[0].toLowerCase().includes(q));
-  if (refSort === 'price') rows = [...rows].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-  if (refSort === 'life') rows = [...rows].sort((a, b) => (a[2] ?? 1e9) - (b[2] ?? 1e9) || a[0].localeCompare(b[0]));
-  $('refBody').innerHTML = rows.map(r => `<tr><td>${esc(r[0])}</td><td class="n">${fmt(r[1])}</td><td class="n">${r[2] ?? '—'}</td><td>${r[3] ? '❄ 要' : ''}</td></tr>`).join('') || '<tr><td colspan="4" class="muted">找不到</td></tr>';
+  const q = $('refQ').value.trim().toLowerCase(), kind = $('refKind').value;
+  const hit = it => !q || [it.en, it.zh, it.zh_cn, ...(it.alias || [])].some(s => String(s || '').toLowerCase().includes(q));
+  let rows = REG.items.filter(it => it.kind === kind && hit(it));
+  if (refSort === 'price') rows = [...rows].sort((a, b) => (b.base ?? 0) - (a.base ?? 0) || a.en.localeCompare(b.en));
+  else if (refSort === 'life') rows = [...rows].sort((a, b) => (a.shelf ?? 1e9) - (b.shelf ?? 1e9) || a.en.localeCompare(b.en));
+  else rows = [...rows].sort((a, b) => a.en.localeCompare(b.en));
+  $('refBody').innerHTML = rows.slice(0, 300).map(it => `<tr><td>${esc(it.zh)}${it.zh_ok ? '' : ' <span class="muted">＊</span>'}${(it.alias || []).length ? `<div class="muted small">也叫 ${it.alias.map(esc).join('、')}</div>` : ''}</td><td>${esc(it.en)}</td><td class="n">${it.kind === 'dish' ? '—' : fmt(it.base)}</td><td class="n">${it.shelf ?? '—'}</td><td>${it.fridge ? '❄ 要' : ''}</td></tr>`).join('') || '<tr><td colspan="5" class="muted">找不到</td></tr>';
+}
+
+function renderStaff(data) {
+  const s = data.staff || [], hm = data.game ? data.game.has_manager : null;
+  $('staffNote').textContent = hm === true ? '有 manager' : hm === false ? '沒有 manager' : '';
+  if (!s.length && hm == null) { $('staff').innerHTML = empty('員工資料', '這是員工畫面'); return; }
+  const role = { cook: '廚師', waiter: '服務生', cleaner: '清潔', manager: 'manager' };
+  const wages = s.map(x => x.wage_per_hour).filter(v => typeof v === 'number');
+  $('staff').innerHTML = s.length ? `<div class="table-wrap"><table><thead><tr><th>名字</th><th>職位</th><th class="n">時薪</th><th>班表</th></tr></thead><tbody>${
+    s.map(x => `<tr><td>${esc(x.name)}</td><td>${esc(role[x.role] || x.role || '—')}</td><td class="n">${fmt(x.wage_per_hour ?? null)}</td><td class="mono">${esc(x.hours || '—')}</td></tr>`).join('')}</tbody></table></div>${wages.length ? `<p class="muted small">已知時薪合計 ${fmt(wages.reduce((a, b) => a + b, 0))}／小時。</p>` : ''}`
+    : '<div class="empty"><span>還沒有每個員工的資料。</span><span>傳給 Claude：<b>這是員工畫面</b></span></div>';
 }
 
 // ---------- wiring ----------
@@ -207,14 +221,15 @@ document.addEventListener('click', e => {
 });
 $('refQ').addEventListener('input', renderRef);
 $('refSort').addEventListener('change', e => { refSort = e.target.value; renderRef(); });
+$('refKind').addEventListener('change', renderRef);
 
 async function main() {
   try {
     const demo = new URLSearchParams(location.search).has('demo');
-    const [data, ref, vendors] = await Promise.all([getJSON(demo ? 'tools/demo.json' : 'data.json'), getJSON('ref/ingredients.json'), getJSON('ref/vendors.json')]);
-    REF = ref;
-    const a = analyze(data, ref);
-    renderHeader(data); renderKpis(data, a); renderTodo(data); renderAlerts(a, data); renderAsks(data);
+    const [data, reg, vendors] = await Promise.all([getJSON(demo ? 'tools/demo.json' : 'data.json'), getJSON('ref/registry.json'), getJSON('ref/vendors.json')]);
+    REG = reg;
+    const a = analyze(data, reg);
+    renderHeader(data); renderKpis(data, a); renderTodo(data); renderAlerts(a, data); renderStaff(data); renderAsks(data);
     renderOverlap(a); renderDishes(a); renderChart(a); renderLog(data); renderRef();
     $('vendors').innerHTML = Object.entries(vendors.vendors).map(([k, v]) => `<li><b>${esc(k)}</b>（${v.length} 區）：${v.map(esc).join('、')}</li>`).join('');
     if (demo) {

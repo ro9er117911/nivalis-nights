@@ -4,10 +4,22 @@
 const num = v => (typeof v === 'number' && isFinite(v) ? v : null);
 const key = s => String(s || '').trim().toLowerCase();
 
-export function refIndex(ref) {
-  const m = new Map();
-  for (const r of (ref && ref.ings) || []) m.set(key(r[0]), { name: r[0], base: r[1], shelf: r[2], fridge: !!r[3] });
-  return m;
+// Registry (ref/registry.json): one row per item, English id + Chinese name + aliases.
+// resolve() maps any spelling (en / zh / zh_cn / alias, any case) to that row.
+export function refIndex(reg) {
+  const byKey = new Map();
+  const add = (k, it) => { if (!k) return; const kk = key(k); const l = byKey.get(kk) || []; if (!l.includes(it)) l.push(it); byKey.set(kk, l); };
+  for (const it of (reg && reg.items) || []) { add(it.en, it); add(it.zh, it); add(it.zh_cn, it); (it.alias || []).forEach(a => add(a, it)); }
+  // returns {item} | {ambiguous: [items]} | null
+  const resolve = (name, kind = 'ingredient') => {
+    const l = byKey.get(key(name));
+    if (!l) return null;
+    const pref = l.filter(it => it.kind === kind);
+    const pool = pref.length ? pref : l;
+    const ens = new Set(pool.map(it => it.en));
+    return ens.size === 1 ? { item: pool[0] } : { ambiguous: pool };
+  };
+  return { resolve };
 }
 
 // Latest price per (item, vendor), then the cheapest of those.
@@ -42,32 +54,35 @@ export function dayNet(d) {
   return parts.some(v => v === null) ? null : parts[0] - parts[1] - parts[2] - parts[3];
 }
 
-export function analyze(data, ref) {
-  const R = refIndex(ref);
+export function analyze(data, reg) {
+  const { resolve } = refIndex(reg);
+  const item = (name, kind = 'ingredient') => resolve(name, kind)?.item || null;
+  const canon = name => { const it = item(name); return it ? key(it.en) : key(name); };
   const dishes = data.dishes || [];
   const onMenu = dishes.filter(d => d.on_menu);
-  const best = cheapestByItem(data.prices);
-  const stock = latestStock(data.stock);
+  const best = cheapestByItem((data.prices || []).map(p => ({ ...p, item: canon(p.item) })));
+  const stock = latestStock((data.stock || []).map(s => ({ ...s, item: canon(s.item) })));
 
-  // every ingredient mentioned by any dish, keeping first spelling
+  // every ingredient mentioned by any dish, keyed by its registry id
   const names = new Map();
-  for (const d of dishes) for (const n of Object.keys(d.ingredients || {})) if (!names.has(key(n))) names.set(key(n), n);
+  for (const d of dishes) for (const n of Object.keys(d.ingredients || {})) if (!names.has(canon(n))) names.set(canon(n), n);
 
   const unitCost = k => {
     const c = best.get(k);
     if (c) return { price: c.price, est: false };
-    const r = R.get(k);
-    return r ? { price: r.base, est: true } : null;
+    const r = item(k);
+    return r && r.base !== null ? { price: r.base, est: true } : null;
   };
 
-  const ingredients = [...names.entries()].map(([k, name]) => {
-    const qtyIn = d => num(Object.entries(d.ingredients || {}).find(([n]) => key(n) === k)?.[1]) || 0;
+  const ingredients = [...names.entries()].map(([k, raw]) => {
+    const r = item(raw);
+    const name = r ? r.zh : raw;
+    const qtyIn = d => num(Object.entries(d.ingredients || {}).find(([n]) => canon(n) === k)?.[1]) || 0;
     const users = onMenu.filter(d => qtyIn(d) > 0);
     const salesKnown = users.every(d => num(d.sold_per_day) !== null);
     const need = users.length && salesKnown ? users.reduce((s, d) => s + qtyIn(d) * num(d.sold_per_day), 0) : null;
     const st = stock.get(k);
     const onHand = st ? num(st.qty) : null;
-    const r = R.get(k) || null;
     const cheapest = best.get(k) || null;
     const daysLeft = need && onHand !== null ? onHand / need : null;
     const flags = [];
@@ -77,7 +92,7 @@ export function analyze(data, ref) {
     if (users.length === 1) flags.push('single');
     if (!cheapest) flags.push('noprice');
     if (!r) flags.push('unknown');
-    return { name, overlap: users.length, dishes: users.map(d => d.name), need, onHand, daysLeft, cheapest, base: r ? r.base : null, shelf: r ? r.shelf : null, fridge: r ? r.fridge : false, flags };
+    return { name, en: r ? r.en : null, overlap: users.length, dishes: users.map(d => d.name), need, onHand, daysLeft, cheapest, base: r ? r.base : null, shelf: r ? r.shelf : null, fridge: r ? r.fridge : false, flags };
   }).filter(i => i.overlap > 0)
     .sort((a, b) => b.overlap - a.overlap || a.name.localeCompare(b.name));
 
@@ -85,13 +100,14 @@ export function analyze(data, ref) {
     let cost = 0, est = false, missing = 0;
     for (const [n, q] of Object.entries(d.ingredients || {})) {
       const qq = num(q); if (!qq) continue;
-      const u = unitCost(key(n));
+      const u = unitCost(canon(n));
       if (!u) { missing++; continue; }
       cost += qq * u.price; if (u.est) est = true;
     }
     const price = num(d.price);
     const margin = price === null ? null : price - cost;
-    return { name: d.name, onMenu: !!d.on_menu, price, cost, est, missing, margin, pct: price ? cost / price : null, sold: num(d.sold_per_day) };
+    const di = item(d.name, 'dish');
+    return { name: di ? di.zh : d.name, en: di ? di.en : null, onMenu: !!d.on_menu, price, cost, est, missing, margin, pct: price ? cost / price : null, sold: num(d.sold_per_day) };
   });
 
   const dailyFood = ingredients.every(i => i.need !== null && (i.cheapest || i.base !== null)) && ingredients.length

@@ -43,6 +43,11 @@
         <div id="alerts"></div>
       </section>
 
+      <section class="card" aria-labelledby="hStaff">
+        <div class="card-head"><h2 id="hStaff">人手</h2><span class="muted small" id="staffNote"></span></div>
+        <div id="staff"></div>
+      </section>
+
       <section class="card" aria-labelledby="hAsks">
         <div class="card-head"><h2 id="hAsks">下一步給 Claude 這些</h2></div>
         <ul class="asks" id="asks"></ul>
@@ -81,19 +86,20 @@
           <li>定價：每次小幅提價，評價開始掉之前停手；主餐守住，飲料、甜點、配菜提價補毛利。<span class="conf">玩家經驗</span></li>
           <li>清庫存：打烊後把快壞（橘色）和多出來的庫存賣給附近的 Farmer。爛掉的賣不到錢。<span class="conf">單一玩家</span></li>
         </ol>
-        <p class="muted small">完整版：專案資料夾的 經營手冊.md。</p>
+        <p class="muted small">完整版在你電腦的 Game/經營手冊.md（不在這個公開網站上）。</p>
       </div></div></div>
     </div>
 
     <div class="t-acc" data-open="false">
-      <button class="t-acc-head" aria-expanded="false">食材基準價<span class="muted">遊戲檔掃出的 230 種</span><span class="t-acc-chevron"><svg viewBox="0 0 16 16"><path d="M4 6.5L8 10.5L12 6.5"/></svg></span></button>
+      <button class="t-acc-head" aria-expanded="false">中英對照表<span class="muted">食材、菜、種子 515 筆，含基準價</span><span class="t-acc-chevron"><svg viewBox="0 0 16 16"><path d="M4 6.5L8 10.5L12 6.5"/></svg></span></button>
       <div class="t-acc-panel"><div class="t-acc-panel-inner"><div class="acc-body">
-        <p class="muted small">這是基準價，不是你在店裡付的價（每天會變，還有 Daily Deal）。壽命格的單位還沒確定：可能 1 格 = 8 小時，也可能 = 1 天。</p>
+        <p class="muted small">中文或英文都能搜。中文名是從遊戲簡中版轉成繁體的，標 ＊ 的還沒用你的截圖確認過；你遊戲裡的寫法不同就告訴 Claude，它會改這張表。基準價不是你在店裡付的價；壽命格的單位還沒確定（可能 1 格 = 8 小時，也可能 = 1 天）。</p>
         <div class="ref-tools">
-          <input id="refQ" type="search" placeholder="搜尋，例如 onion" autocomplete="off" aria-label="搜尋食材">
+          <input id="refQ" type="search" placeholder="搜尋，例如 洋蔥 或 onion" autocomplete="off" aria-label="搜尋">
+          <select id="refKind" aria-label="種類"><option value="ingredient">食材</option><option value="dish">菜</option><option value="seed">種子</option></select>
           <select id="refSort" aria-label="排序"><option value="name">依名稱</option><option value="price">價錢 高→低</option><option value="life">壽命 短→長</option></select>
         </div>
-        <div class="ref-list table-wrap"><table><thead><tr><th>食材</th><th class="n">基準價</th><th class="n">壽命格</th><th>冷藏</th></tr></thead><tbody id="refBody"></tbody></table></div>
+        <div class="ref-list table-wrap"><table><thead><tr><th>中文</th><th>English</th><th class="n">基準價</th><th class="n">壽命格</th><th>冷藏</th></tr></thead><tbody id="refBody"></tbody></table></div>
       </div></div></div>
     </div>
 
@@ -114,11 +120,11 @@
           <li>Claude 改這個網站的 data.json、跑檢查、推上 GitHub。約 1 分鐘後重新整理這頁。</li>
         </ol>
         <div class="table-wrap"><table class="fieldmap"><thead><tr><th>你給的畫面</th><th>會更新</th></tr></thead><tbody>
-          <tr><td>食譜畫面</td><td>菜名、每份食材與數量、設備、售價、有沒有上架</td></tr>
+          <tr><td>食譜畫面</td><td>菜名、每份食材與數量、設備、售價、有沒有上架（中文名照中英對照表換算）</td></tr>
           <tr><td>收盤／HUD</td><td>當天現金、營收、花費、客數、評價</td></tr>
           <tr><td>冰箱／庫存</td><td>每種食材的數量、橘色和爛掉的數量</td></tr>
           <tr><td>商人交易畫面</td><td>哪一區哪一家、每種食材的價錢、Daily Deal</td></tr>
-          <tr><td>員工畫面</td><td>有沒有 manager、時薪、班表</td></tr>
+          <tr><td>員工畫面</td><td>「人手」區：有沒有 manager、每人職位、時薪、班表</td></tr>
         </tbody></table></div>
       </div></div></div>
     </div>

@@ -164,7 +164,8 @@ td.n, th.n { text-align: right; font-family: var(--font-mono); font-variant-nume
 tr:last-child td { border-bottom: 0; }
 .ovl { display: inline-flex; gap: 2px; vertical-align: middle; margin-left: 6px; }
 .ovl i { width: 6px; height: 10px; border-radius: 2px; background: var(--accent); }
-.est { color: var(--muted); font-size: 0.75em; margin-left: 2px; }
+.est { color: var(--muted); font-size: 0.85em; margin-left: 2px; }
+.en { font-size: 0.85em; }
 .tags { margin-top: 3px; }
 .tag { display: inline-block; font-size: 0.75rem; padding: 0 6px; border-radius: 99px; margin-right: 4px; }
 .tag.bad { background: var(--bad-soft); color: var(--bad); }

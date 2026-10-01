@@ -19,4 +19,4 @@ node tools/check.mjs
 python3 -m http.server 8777
 ```
 
-動畫參考 [transitions.dev](https://transitions.dev)（免費授權，見其 LICENSE）。食材基準價來自 [HiveSolution/nivalis-save-editor](https://github.com/HiveSolution/nivalis-save-editor)。
+動畫參考 [transitions.dev](https://transitions.dev)（免費授權，見其 LICENSE）。中英對照的中文名來自 [Vesper0802/Nivalis_console](https://github.com/Vesper0802/Nivalis_console) 的遊戲簡中顯示名（轉繁體，待確認）；壽命資料來自 [HiveSolution/nivalis-save-editor](https://github.com/HiveSolution/nivalis-save-editor)。
