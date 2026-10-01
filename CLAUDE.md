@@ -62,6 +62,8 @@
    curl -s "https://ro9er117911.github.io/nivalis-nights/data.json?t=$(date +%s)" | head -c 200
    ```
 
+   GitHub Pages 每個檔案快取 10 分鐘。改了 `assets/` 或刪了檔案之後，舊分頁最多 10 分鐘內可能顯示「讀不到資料」；重新整理或等它過期即可，不是壞掉。
+
 8. 回覆使用者時說清楚：你記了哪些數字、哪些看不清楚留了 `null`、網頁現在提醒什麼。
 
 ## 檔案
