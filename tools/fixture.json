@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "updated": "2026-10-01T00:00:00+08:00",
+  "game": { "day": 5, "venue": "Noodle Stand", "has_manager": null },
+  "cash_log": [
+    { "day": 4, "time": "08:00", "cash": 300, "src": "fixture" },
+    { "day": 5, "time": "08:00", "cash": 500, "src": "fixture" }
+  ],
+  "days": [
+    { "day": 5, "revenue": 900, "ingredient_spend": 300, "wages": 300, "rent_interest": 200, "customers": 40, "angry": 2, "rating": 4, "rotten": 2, "change": "", "src": "fixture" }
+  ],
+  "dishes": [
+    { "name": "Soup", "price": 30, "on_menu": true, "sold_per_day": 20, "ingredients": { "Onion": 1, "Chicken": 1, "Noodle": 1 }, "equipment": [], "src": "fixture" },
+    { "name": "Fried", "price": 20, "on_menu": true, "sold_per_day": 15, "ingredients": { "Onion": 1, "Chicken": 2 }, "equipment": [], "src": "fixture" },
+    { "name": "Salad", "price": 18, "on_menu": false, "sold_per_day": 5, "ingredients": { "Lettuce": 2, "Onion": 1 }, "equipment": [], "src": "fixture" }
+  ],
+  "stock": [
+    { "item": "Onion", "qty": 12, "day": 5 },
+    { "item": "Chicken", "qty": 30, "day": 5 },
+    { "item": "Noodle", "qty": 40, "day": 5 },
+    { "item": "Lettuce", "qty": 6, "day": 5 }
+  ],
+  "prices": [
+    { "item": "Onion", "vendor": "A", "district": "X", "price": 2, "day": 5 },
+    { "item": "Onion", "vendor": "B", "district": "X", "price": 3, "day": 5 },
+    { "item": "Chicken", "vendor": "C", "district": "X", "price": 6, "day": 5 },
+    { "item": "Noodle", "vendor": "A", "district": "X", "price": 4, "day": 5 },
+    { "item": "Lettuce", "vendor": "B", "district": "X", "price": 2, "day": 5 }
+  ],
+  "staff": [],
+  "todo": [],
+  "asks": [],
+  "log": []
+}

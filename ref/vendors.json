@@ -1,0 +1,76 @@
+{
+ "meta": {
+  "source": "same items.json vendors list; names only, no stock or prices"
+ },
+ "vendors": {
+  "Greengrocer": [
+   "Calypso Island",
+   "Central Canyon",
+   "Docks",
+   "Eastern Residential",
+   "Hive Mall",
+   "Lowtown",
+   "Metro Hub",
+   "Mountain Town",
+   "Stacks"
+  ],
+  "Butcher": [
+   "Central Canyon",
+   "Eastern Residential",
+   "Helix",
+   "Hive Mall",
+   "Lowtown",
+   "Metro Hub",
+   "Stacks"
+  ],
+  "Fishmonger": [
+   "Calypso Island",
+   "Docks",
+   "Helix",
+   "Mountain Town",
+   "Sewers",
+   "Stacks"
+  ],
+  "Dairy": [
+   "Calypso Island",
+   "Eastern Residential",
+   "Helix",
+   "Metro Hub",
+   "Stacks"
+  ],
+  "Baker": [
+   "Calypso Island",
+   "Central Canyon",
+   "Eastern Residential",
+   "Metro Hub"
+  ],
+  "Drinks": [
+   "Calypso Island",
+   "Central Canyon",
+   "Helix",
+   "Sewers"
+  ],
+  "Herbs": [
+   "Calypso Island",
+   "Central Canyon",
+   "Hive Mall",
+   "Lowtown"
+  ],
+  "Farmer": [
+   "Calypso Island",
+   "Industrial District",
+   "Mountain Town"
+  ],
+  "Confectioner": [
+   "Hive Mall",
+   "Metro Hub"
+  ],
+  "Seeds": [
+   "Docks",
+   "Sewers"
+  ],
+  "Gardener": [
+   "Hive Mall"
+  ]
+ }
+}

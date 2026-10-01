@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>夜城營運板</title>
+<meta name="description" content="Nivalis Nights 麵攤的現金流、食材重疊與待辦。資料由 Claude 從截圖更新。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top t-reveal">
+    <h1>夜城<span>營運板</span></h1>
+    <div class="hud mono"><span id="hudDay">DAY —</span><span aria-hidden="true">·</span><span id="hudUpdated">更新 —</span><span id="statusPill" class="pill wait"><span class="dot"></span>讀取中</span></div>
+    <p class="muted small">你只要丟截圖＋一句話給 Claude，這頁會自己更新。</p>
+  </header>
+
+  <section class="kpis" aria-label="重點數字">
+    <div class="kpi"><div class="label">現金</div>
+      <div class="t-skel" id="skelCash"><div class="t-skel-skeleton is-pulsing"><div class="bar-skel"></div></div><div class="t-skel-content"><div class="value" id="kCash"></div></div></div>
+      <div class="sub" id="kCashSub"></div></div>
+    <div class="kpi"><div class="label">平均淨利</div>
+      <div class="t-skel" id="skelNet"><div class="t-skel-skeleton is-pulsing"><div class="bar-skel"></div></div><div class="t-skel-content"><div class="value" id="kNet"></div></div></div>
+      <div class="sub" id="kNetSub"></div></div>
+    <div class="kpi"><div class="label">要注意</div>
+      <div class="t-skel" id="skelAlert"><div class="t-skel-skeleton is-pulsing"><div class="bar-skel"></div></div><div class="t-skel-content"><div class="value" id="kAlert"></div></div></div>
+      <div class="sub" id="kAlertSub"></div></div>
+  </section>
+
+  <div class="cols">
+    <div class="col">
+      <section class="ticket" aria-labelledby="hTodo">
+        <div class="ticket-head"><h2 id="hTodo">現在做這幾件事</h2><span class="mono" id="ticketNo"></span></div>
+        <ol class="todo" id="todo"></ol>
+      </section>
+
+      <section class="card" aria-labelledby="hAlerts">
+        <div class="card-head"><h2 id="hAlerts">要注意</h2></div>
+        <div id="alerts"></div>
+      </section>
+
+      <section class="card" aria-labelledby="hAsks">
+        <div class="card-head"><h2 id="hAsks">下一步給 Claude 這些</h2></div>
+        <ul class="asks" id="asks"></ul>
+        <p class="howto">截圖貼給 Claude，說一句話就好。點右邊的字可以複製。</p>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class="card" aria-labelledby="hOverlap">
+        <div class="card-head"><h2 id="hOverlap">食材重疊</h2><span class="muted small">上架的菜裡，幾道用到它</span></div>
+        <div id="overlap"></div>
+      </section>
+
+      <section class="card" aria-labelledby="hDishes">
+        <div class="card-head"><h2 id="hDishes">每道菜賺多少</h2><span class="muted small" id="dishNote"></span></div>
+        <div id="dishes"></div>
+      </section>
+
+      <section class="card chart" aria-labelledby="hChart">
+        <div class="card-head"><h2 id="hChart">每日淨利</h2><span class="muted small">營收 − 食材 − 薪水 − 租金利息</span></div>
+        <div id="chart" class="chart-box"></div>
+      </section>
+    </div>
+  </div>
+
+  <section class="accs" aria-label="參考">
+    <div class="t-acc" data-open="false">
+      <button class="t-acc-head" aria-expanded="false" id="accNotesBtn">手冊重點<span class="muted">研究結論，含可信度</span><span class="t-acc-chevron"><svg viewBox="0 0 16 16"><path d="M4 6.5L8 10.5L12 6.5"/></svg></span></button>
+      <div class="t-acc-panel"><div class="t-acc-panel-inner"><div class="acc-body">
+        <ol class="notes">
+          <li>網路上沒有「食譜 → 食材 → 數量」表，也沒有「商人 → 價錢」表。這頁的重疊和價錢，全靠你的截圖。<span class="conf">可信度 高</span></li>
+          <li>重疊高不一定好清庫存：種類少好備料；但一種食材缺了或爛了，好幾道菜會一起停，manager 也可能對熱門共用食材買太多。<span class="conf">中</span></li>
+          <li>Manager 好壞的證據兩邊都有：有人說它把存款花光，也有人用 1–3 位 manager 賺 1,000–1,500/天。要用你的數字測（先縮短班表 3 天）。<span class="conf">低</span></li>
+          <li>Mod 作者讀程式碼說：原版 manager 會對每一家有貨的商人都買整份訂單（要 1 顆蒜從 4 家各買 1 顆）。官方到 2026-10-01 沒有修補公告。<span class="conf">中，版本相依</span></li>
+          <li>冰箱格數是菜單大小的實際上限之一。有玩家菜單 9/20，想加菜但放不下。<span class="conf">中</span></li>
+          <li>定價：每次小幅提價，評價開始掉之前停手；主餐守住，飲料、甜點、配菜提價補毛利。<span class="conf">玩家經驗</span></li>
+          <li>清庫存：打烊後把快壞（橘色）和多出來的庫存賣給附近的 Farmer。爛掉的賣不到錢。<span class="conf">單一玩家</span></li>
+        </ol>
+        <p class="muted small">完整版：專案資料夾的 經營手冊.md。</p>
+      </div></div></div>
+    </div>
+
+    <div class="t-acc" data-open="false">
+      <button class="t-acc-head" aria-expanded="false">食材基準價<span class="muted">遊戲檔掃出的 230 種</span><span class="t-acc-chevron"><svg viewBox="0 0 16 16"><path d="M4 6.5L8 10.5L12 6.5"/></svg></span></button>
+      <div class="t-acc-panel"><div class="t-acc-panel-inner"><div class="acc-body">
+        <p class="muted small">這是基準價，不是你在店裡付的價（每天會變，還有 Daily Deal）。壽命格的單位還沒確定：可能 1 格 = 8 小時，也可能 = 1 天。</p>
+        <div class="ref-tools">
+          <input id="refQ" type="search" placeholder="搜尋，例如 onion" autocomplete="off" aria-label="搜尋食材">
+          <select id="refSort" aria-label="排序"><option value="name">依名稱</option><option value="price">價錢 高→低</option><option value="life">壽命 短→長</option></select>
+        </div>
+        <div class="ref-list table-wrap"><table><thead><tr><th>食材</th><th class="n">基準價</th><th class="n">壽命格</th><th>冷藏</th></tr></thead><tbody id="refBody"></tbody></table></div>
+      </div></div></div>
+    </div>
+
+    <div class="t-acc" data-open="false">
+      <button class="t-acc-head" aria-expanded="false">商人在哪區<span class="muted">只有名字，沒有賣什麼</span><span class="t-acc-chevron"><svg viewBox="0 0 16 16"><path d="M4 6.5L8 10.5L12 6.5"/></svg></span></button>
+      <div class="t-acc-panel"><div class="t-acc-panel-inner"><div class="acc-body">
+        <p class="muted small">起手：Ramen Noodles 和 Onions 在 Meridian Market 的 Greengrocer，Chicken 在 Butcher。進新區先按 C 掃描商人。下面名單裡沒有 Meridian Market，可能不完整或是別名。</p>
+        <ul class="vendors" id="vendors"></ul>
+      </div></div></div>
+    </div>
+
+    <div class="t-acc" data-open="false">
+      <button class="t-acc-head" aria-expanded="false">怎麼更新這頁<span class="muted">給你，也給 Claude</span><span class="t-acc-chevron"><svg viewBox="0 0 16 16"><path d="M4 6.5L8 10.5L12 6.5"/></svg></span></button>
+      <div class="t-acc-panel"><div class="t-acc-panel-inner"><div class="acc-body">
+        <ol class="steps">
+          <li>在遊戲裡截圖。</li>
+          <li>貼給 Claude，說一句它是什麼畫面（例如「這是食譜畫面」）。口述數字也可以。</li>
+          <li>Claude 改這個網站的 data.json、跑檢查、推上 GitHub。約 1 分鐘後重新整理這頁。</li>
+        </ol>
+        <div class="table-wrap"><table class="fieldmap"><thead><tr><th>你給的畫面</th><th>會更新</th></tr></thead><tbody>
+          <tr><td>食譜畫面</td><td>菜名、每份食材與數量、設備、售價、有沒有上架</td></tr>
+          <tr><td>收盤／HUD</td><td>當天現金、營收、花費、客數、評價</td></tr>
+          <tr><td>冰箱／庫存</td><td>每種食材的數量、橘色和爛掉的數量</td></tr>
+          <tr><td>商人交易畫面</td><td>哪一區哪一家、每種食材的價錢、Daily Deal</td></tr>
+          <tr><td>員工畫面</td><td>有沒有 manager、時薪、班表</td></tr>
+        </tbody></table></div>
+      </div></div></div>
+    </div>
+
+    <div class="t-acc" data-open="false">
+      <button class="t-acc-head" aria-expanded="false">更新紀錄<span class="muted" id="logCount"></span><span class="t-acc-chevron"><svg viewBox="0 0 16 16"><path d="M4 6.5L8 10.5L12 6.5"/></svg></span></button>
+      <div class="t-acc-panel"><div class="t-acc-panel-inner"><div class="acc-body"><ul class="vendors" id="log"></ul></div></div></div>
+    </div>
+  </section>
+
+  <footer>資料來源：你的截圖（經 Claude 轉錄）＋玩家工具從遊戲檔掃出的基準價。玩家說法只涵蓋 2026-09-29 發售後頭兩天。</footer>
+</div>
+
+<div class="toast-slot" aria-live="polite"><div class="t-toast" id="toast"></div></div>
+<script type="module" src="assets/app.js"></script>
+</body>
+</html>

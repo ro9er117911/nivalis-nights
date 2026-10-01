@@ -1,0 +1,333 @@
+{
+ "schema": 1,
+ "updated": "2026-10-01T13:00:00+08:00",
+ "game": {
+  "day": 8,
+  "weekday": "MON",
+  "venue": "Noodle Stand",
+  "venue_level": 2,
+  "has_manager": false,
+  "mods": []
+ },
+ "cash_log": [
+  {
+   "day": 3,
+   "time": "08:00",
+   "cash": 289.05,
+   "src": "範例"
+  },
+  {
+   "day": 4,
+   "time": "08:00",
+   "cash": 240.0,
+   "src": "範例"
+  },
+  {
+   "day": 5,
+   "time": "08:00",
+   "cash": 310.5,
+   "src": "範例"
+  },
+  {
+   "day": 6,
+   "time": "08:00",
+   "cash": 420.0,
+   "src": "範例"
+  },
+  {
+   "day": 7,
+   "time": "08:00",
+   "cash": 395.2,
+   "src": "範例"
+  },
+  {
+   "day": 8,
+   "time": "08:00",
+   "cash": 512.8,
+   "src": "範例"
+  }
+ ],
+ "days": [
+  {
+   "day": 3,
+   "revenue": 610,
+   "ingredient_spend": 290,
+   "wages": 260,
+   "rent_interest": 120,
+   "customers": 31,
+   "angry": 6,
+   "rating": 3.2,
+   "rotten": 9,
+   "change": "",
+   "src": "範例"
+  },
+  {
+   "day": 4,
+   "revenue": 640,
+   "ingredient_spend": 260,
+   "wages": 260,
+   "rent_interest": 120,
+   "customers": 33,
+   "angry": 5,
+   "rating": 3.4,
+   "rotten": 7,
+   "change": "不改，記基準",
+   "src": "範例"
+  },
+  {
+   "day": 5,
+   "revenue": 700,
+   "ingredient_spend": 250,
+   "wages": 260,
+   "rent_interest": 120,
+   "customers": 36,
+   "angry": 4,
+   "rating": 3.6,
+   "rotten": 4,
+   "change": "不改，記基準",
+   "src": "範例"
+  },
+  {
+   "day": 6,
+   "revenue": 760,
+   "ingredient_spend": 230,
+   "wages": 260,
+   "rent_interest": 120,
+   "customers": 38,
+   "angry": 3,
+   "rating": 3.9,
+   "rotten": 2,
+   "change": "菜單 5 道減到 3 道",
+   "src": "範例"
+  },
+  {
+   "day": 7,
+   "revenue": 735,
+   "ingredient_spend": 240,
+   "wages": 260,
+   "rent_interest": 120,
+   "customers": 37,
+   "angry": 3,
+   "rating": 3.9,
+   "rotten": 2,
+   "change": "",
+   "src": "範例"
+  },
+  {
+   "day": 8,
+   "revenue": 820,
+   "ingredient_spend": 245,
+   "wages": 260,
+   "rent_interest": 120,
+   "customers": 40,
+   "angry": 2,
+   "rating": 4.1,
+   "rotten": 1,
+   "change": "飲料 +2",
+   "src": "範例"
+  }
+ ],
+ "dishes": [
+  {
+   "name": "Chicken Noodle Soup",
+   "price": 23,
+   "on_menu": true,
+   "sold_per_day": 18,
+   "ingredients": {
+    "Chicken": 1,
+    "Onions": 1,
+    "Ramen Noodles": 1
+   },
+   "equipment": [
+    "Cooker"
+   ],
+   "src": "範例"
+  },
+  {
+   "name": "Tonkotsu Ramen",
+   "price": 30,
+   "on_menu": true,
+   "sold_per_day": 12,
+   "ingredients": {
+    "Pork Belly": 1,
+    "Ramen Noodles": 1,
+    "Eggs": 1,
+    "Onions": 1
+   },
+   "equipment": [
+    "Cooker"
+   ],
+   "src": "範例"
+  },
+  {
+   "name": "Accordion Potatoes",
+   "price": 23,
+   "on_menu": true,
+   "sold_per_day": 8,
+   "ingredients": {
+    "Potatoes": 2,
+    "Cheese": 1,
+    "Onions": 1
+   },
+   "equipment": [
+    "Oven"
+   ],
+   "src": "範例"
+  },
+  {
+   "name": "Goulash",
+   "price": 27,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Beef": 1,
+    "Onions": 1,
+    "Potatoes": 1,
+    "Paprika": 1
+   },
+   "equipment": [
+    "Cooker"
+   ],
+   "src": "範例"
+  }
+ ],
+ "stock": [
+  {
+   "item": "Chicken",
+   "qty": 14,
+   "orange": 0,
+   "rotten": 0,
+   "day": 8
+  },
+  {
+   "item": "Onions",
+   "qty": 30,
+   "orange": 4,
+   "rotten": 0,
+   "day": 8
+  },
+  {
+   "item": "Ramen Noodles",
+   "qty": 60,
+   "orange": 0,
+   "rotten": 0,
+   "day": 8
+  },
+  {
+   "item": "Pork Belly",
+   "qty": 15,
+   "orange": 0,
+   "rotten": 0,
+   "day": 8
+  },
+  {
+   "item": "Eggs",
+   "qty": 6,
+   "orange": 2,
+   "rotten": 1,
+   "day": 8
+  },
+  {
+   "item": "Potatoes",
+   "qty": 20,
+   "orange": 0,
+   "rotten": 0,
+   "day": 8
+  },
+  {
+   "item": "Cheese",
+   "qty": 10,
+   "orange": 0,
+   "rotten": 0,
+   "day": 8
+  }
+ ],
+ "prices": [
+  {
+   "item": "Chicken",
+   "vendor": "Butcher",
+   "district": "Meridian Market",
+   "price": 5.4,
+   "day": 8
+  },
+  {
+   "item": "Chicken",
+   "vendor": "Butcher",
+   "district": "Lowtown",
+   "price": 4.9,
+   "day": 8
+  },
+  {
+   "item": "Onions",
+   "vendor": "Greengrocer",
+   "district": "Meridian Market",
+   "price": 1.6,
+   "day": 8
+  },
+  {
+   "item": "Ramen Noodles",
+   "vendor": "Greengrocer",
+   "district": "Meridian Market",
+   "price": 1.5,
+   "day": 8
+  },
+  {
+   "item": "Pork Belly",
+   "vendor": "Butcher",
+   "district": "Meridian Market",
+   "price": 3.2,
+   "day": 8
+  },
+  {
+   "item": "Eggs",
+   "vendor": "Dairy",
+   "district": "Metro Hub",
+   "price": 2.3,
+   "day": 8
+  },
+  {
+   "item": "Potatoes",
+   "vendor": "Greengrocer",
+   "district": "Meridian Market",
+   "price": 2.6,
+   "day": 8
+  }
+ ],
+ "staff": [
+  {
+   "name": "Banor",
+   "role": "cook",
+   "wage_per_hour": null,
+   "hours": "10-22",
+   "mood": "green"
+  }
+ ],
+ "todo": [
+  {
+   "text": "Eggs 只夠半天：開店前補到 12 顆",
+   "why": "Tonkotsu Ramen 一天要 12 顆，現在 6 顆"
+  },
+  {
+   "text": "把 4 顆快壞的 Onions 先拿去做湯",
+   "why": "橘色的再一晚就爛"
+  },
+  {
+   "text": "Cheese 還沒記價格：下次去 Dairy 拍一張",
+   "why": "Accordion Potatoes 的成本現在是估的"
+  }
+ ],
+ "asks": [
+  {
+   "what": "Dairy 商人的價格",
+   "why": "補上 Cheese 的實際進價",
+   "say": "這是 Dairy 的價格",
+   "priority": 1
+  }
+ ],
+ "log": [
+  {
+   "date": "2026-10-01",
+   "note": "範例資料"
+  }
+ ]
+}
