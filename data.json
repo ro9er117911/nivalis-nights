@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "updated": "2026-10-03T13:25:00+08:00",
+ "updated": "2026-10-03T14:10:00+08:00",
  "game": {
-  "day": 11,
-  "weekday": "THU",
+  "day": 12,
+  "weekday": null,
   "venue": "暗夜拉麵",
   "venue_level": 4,
-  "has_manager": true,
+  "has_manager": null,
   "mods": []
  },
  "cash_log": [
@@ -33,99 +33,727 @@
    "store_net": -36.11,
    "apartment": -10,
    "src": "收盤畫面＋總覽 截圖 2026-10-03。支出 912.11 沒有拆食材/薪水，所以淨利欄留空；店鋪收支 -36.11，加公寓 -10 = -46.11"
+  },
+  {
+   "day": 12,
+   "revenue": 442,
+   "ingredient_spend": null,
+   "wages": 148,
+   "rent_interest": null,
+   "customers": null,
+   "angry": null,
+   "rating": null,
+   "rotten": null,
+   "change": "員工從 5 人減到 3 人（各職務 1 人）",
+   "store_spend": 146,
+   "other_spend": 412,
+   "staff_happiness": 0.31,
+   "src": "口述 2026-10-03。天數是推定（上一筆是第 11 天）。「餐廳支出 146」「其他雜項 412」「員工 148」三個數字的關係還沒確認，淨利欄留空"
   }
  ],
- "dishes": [],
- "stock": [],
+ "dishes": [
+  {
+   "name": "Pumpkin Juice",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Pumpkin": 1,
+    "Apples": 1,
+    "Peach": 1,
+    "Pineapple": 1,
+    "Cinnamon": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Beer",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Wheat": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Fennel Soup with Bacon",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Fennel": 1,
+    "Potatoes": 1,
+    "Bacon": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；鮮奶油待確認（Cream？）"
+  },
+  {
+   "name": "Bacon Bloody Mary",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Vodka": 1,
+    "Tomatoes": 1,
+    "Chili": 1,
+    "Bacon": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；芹菜? 沒放"
+  },
+  {
+   "name": "Bacon Avocado Salad",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Cucumbers": 1,
+    "Avocados": 1,
+    "Bacon": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Pike Poke",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Pike": 1,
+    "Rice": 1,
+    "Onions": 1,
+    "Sesame Oil": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Summer Salad",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Tomatoes": 1,
+    "Chicken": 1,
+    "Cheese": 1,
+    "Cucumbers": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Grandma's Cake",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Chocolate": 1,
+    "Milk": 1,
+    "Sugar": 1,
+    "Biscuits": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；奶油（Butter 或 Cream）待確認"
+  },
+  {
+   "name": "Futu-Rice",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Rice": 1,
+    "Pork": 1,
+    "Cucumbers": 1,
+    "Carrots": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；綠花椰菜? 沒放"
+  },
+  {
+   "name": "Barbudian Fish Wata",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Okra": 1,
+    "Thyme": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；魚（鯿魚?）沒放"
+  },
+  {
+   "name": "Brownie",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Flour": 1,
+    "Cocoa Powder": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；奶油、蛋? 沒放"
+  },
+  {
+   "name": "Accordion Potatoes",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Cheese": 1,
+    "Potatoes": 1,
+    "Garlic": 1,
+    "Neutral Oil": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Ramen Burger",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Ramen Noodles": 1,
+    "Cream Cheese": 1,
+    "Tomatoes": 1,
+    "Lettuce": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；起司?、牛肉? 沒放"
+  },
+  {
+   "name": "Pizza Napoli",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Pizza Dough": 1,
+    "Mozarella": 1,
+    "Tomatoes": 1,
+    "Basil": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Breakfast Salad",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Lettuce": 1,
+    "Cucumbers": 1,
+    "Tomatoes": 1,
+    "Eggs": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "旭日炒飯",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Rice": 1,
+    "Beef": 1,
+    "Carrots": 1,
+    "Garlic": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；英文名找不到；洋蔥? 沒放"
+  },
+  {
+   "name": "Almond Crusted Zander",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Zander": 1,
+    "Almonds": 1,
+    "Thyme": 1,
+    "Rosemary": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Eastern Salad",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Fennel": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；小麥?、鼠肉?、胡椒、草菇? 沒放"
+  },
+  {
+   "name": "Sailor Soup",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Mussels": 1,
+    "Tomatoes": 1,
+    "Onions": 1,
+    "Garlic": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "水煮蟑螂?",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Vinegar": 1,
+    "Thyme": 1,
+    "Mint": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；菜名待確認（Poached Roaches?）；蟑螂?、柳橙? 沒放"
+  },
+  {
+   "name": "Steamed Tench",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Tench": 1,
+    "Potatoes": 1,
+    "Carrots": 1,
+    "Asparagus": 1,
+    "Lemons": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Espresso Martini",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Coffee Beans": 1,
+    "Kahlua": 1,
+    "Vodka": 1,
+    "Sugar": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Cendol",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Rice": 1,
+    "Coconut": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；兩種豆（紅腰豆?）沒放"
+  },
+  {
+   "name": "Steak",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Beef": 1,
+    "Black Mushroom": 1,
+    "Asparagus": 1,
+    "Potatoes": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Oyster Shooter",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Tequila": 1,
+    "Oysters": 1,
+    "Lemons": 1,
+    "Chili": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Eyeball Pasta",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Spaghetti Noodles": 1,
+    "Spinach": 1,
+    "Tomatoes": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）；莫札瑞拉?、橄欖? 沒放"
+  },
+  {
+   "name": "Cheese Burger",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Burger Bun": 1,
+    "Chicken": 1,
+    "Cheese": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Chicken Noodle Soup",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Ramen Noodles": 1,
+    "Chicken": 1,
+    "Onions": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Chicken Sandwich",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Toast": 1,
+    "Chicken": 1,
+    "Lettuce": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Magic Potion",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Tomatoes": 1,
+    "Cucumbers": 1,
+    "Onions": 1,
+    "Olive Oil": 1,
+    "Garlic": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  },
+  {
+   "name": "Fish Salad",
+   "price": null,
+   "on_menu": false,
+   "sold_per_day": null,
+   "ingredients": {
+    "Brook Trout": 1,
+    "Cucumbers": 1,
+    "Bean Sprouts": 1,
+    "Asparagus": 1,
+    "Tomatoes": 1
+   },
+   "equipment": [],
+   "src": "口述 2026-10-03（語音念食譜；數量沒說，先當 1）"
+  }
+ ],
+ "stock": [
+  {
+   "item": "Tomatoes",
+   "qty": 20,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Cucumbers",
+   "qty": 20,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Onions",
+   "qty": 20,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Ramen Noodles",
+   "qty": 11,
+   "orange": null,
+   "rotten": null,
+   "day": 12,
+   "note": "口述「煮一個」，推定 11"
+  },
+  {
+   "item": "Red Beans",
+   "qty": 10,
+   "orange": null,
+   "rotten": null,
+   "day": 12,
+   "note": "口述「紅腰豆」"
+  },
+  {
+   "item": "Taro Roots",
+   "qty": 10,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Garlic",
+   "qty": 9,
+   "orange": null,
+   "rotten": null,
+   "day": 12,
+   "note": "口述先 8 後 9"
+  },
+  {
+   "item": "Potatoes",
+   "qty": 9,
+   "orange": null,
+   "rotten": null,
+   "day": 12,
+   "note": "口述先 5 後 9"
+  },
+  {
+   "item": "Beef",
+   "qty": 9,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Black Mushroom",
+   "qty": 9,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Bean Sprouts",
+   "qty": 9,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Brook Trout",
+   "qty": 9,
+   "orange": null,
+   "rotten": null,
+   "day": 12,
+   "note": "口述「是一尊」，推定溪鱒"
+  },
+  {
+   "item": "Avocados",
+   "qty": 8,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Milk",
+   "qty": 7,
+   "orange": 2,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Sugar",
+   "qty": 7,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Biscuits",
+   "qty": 7,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Toast",
+   "qty": 7,
+   "orange": null,
+   "rotten": null,
+   "day": 12,
+   "note": "口述「麵包」，可能是 Bread"
+  },
+  {
+   "item": "Pike",
+   "qty": 6,
+   "orange": 4,
+   "rotten": null,
+   "day": 12,
+   "note": "口述「狗魚」"
+  },
+  {
+   "item": "Chocolate",
+   "qty": 6,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Vanilla",
+   "qty": 6,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Asparagus",
+   "qty": 6,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Bacon",
+   "qty": 5,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Burger Bun",
+   "qty": 5,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Fennel",
+   "qty": 5,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Mussels",
+   "qty": 5,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Cheese",
+   "qty": 5,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Chicken",
+   "qty": 5,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Ide",
+   "qty": 2,
+   "orange": null,
+   "rotten": null,
+   "day": 12,
+   "note": "2 天後壞"
+  },
+  {
+   "item": "Zander",
+   "qty": 2,
+   "orange": null,
+   "rotten": null,
+   "day": 12,
+   "note": "口述「鱸魚」，推定梭鱸"
+  },
+  {
+   "item": "Cocoa Powder",
+   "qty": null,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  },
+  {
+   "item": "Wheat",
+   "qty": null,
+   "orange": null,
+   "rotten": null,
+   "day": 12
+  }
+ ],
  "prices": [],
- "staff": [
-  {
-   "name": "巴諾",
-   "role": "cook",
-   "wage_per_hour": 11.5,
-   "hours": "08-00",
-   "mood": "green",
-   "note": "唯一會煮的人（廚5 服3 清1）；同時被排成服務生"
-  },
-  {
-   "name": "服務生 X10",
-   "role": "waiter",
-   "wage_per_hour": 6.5,
-   "hours": "08-23",
-   "mood": "green",
-   "note": "服6"
-  },
-  {
-   "name": "傑梅拉艾格斯頓",
-   "role": "manager",
-   "wage_per_hour": 7.5,
-   "hours": "08-20",
-   "mood": "green",
-   "note": "經理5"
-  },
-  {
-   "name": "達爾·麥格拉斯",
-   "role": "cleaner",
-   "wage_per_hour": 6,
-   "hours": "08-23",
-   "mood": "green",
-   "note": "清5"
-  },
-  {
-   "name": "薩菲亞·梅甘娜",
-   "role": "waiter",
-   "wage_per_hour": 7.5,
-   "hours": "16-00",
-   "mood": "green",
-   "note": "服5"
-  }
- ],
+ "staff": [],
  "todo": [
   {
-   "text": "明天 08:00 先看現金。不夠付「薪水約 521＋當天食材」就自己補貨，只買當天要用的",
-   "why": "收盤只剩 299.42；薪水是用時薪×班表算的，一天約 521（遊戲沒直接顯示）"
+   "text": "菜單只留冰箱做得出來的菜（看 Game/食譜與冰箱.md 第 2 節）",
+   "why": "客人點了做不出來 = 「菜沒來」1 星"
   },
   {
-   "text": "員工畫面：巴諾只留「廚師」，把「服務生」取消",
-   "why": "他是唯一會煮的人，又被排去端盤；今天看到的 1 星全是「菜沒來／單被刪」，4 星都在誇食物。如果隔天 1 星變成「沒人點單／找不到服務生」，當晚就改回來"
+   "text": "番茄、小黃瓜、洋蔥先別買；下次只補雞肉、起司、培根、貽貝",
+   "why": "前三樣各 20 個；後四樣各 5 個，是真正卡住的"
   },
   {
-   "text": "其他先不動 3 天（菜單、價格、班表、不加人）",
-   "why": "一次只改一樣，才知道是哪個有用"
+   "text": "把芋頭、香草、雅羅魚賣給 Farmer（紅腰豆、鱸魚也可以）",
+   "why": "31 道菜都用不到（或還缺 2–3 樣料），放著只會壞"
   },
   {
-   "text": "每天 08:00 截 HUD 現金給 Claude",
-   "why": "先有基準線；收盤數字跟 08:00 不一樣"
+   "text": "員工快樂度 31%：截員工畫面給 Claude 排班",
+   "why": "人少班長，快樂度太低可能變慢或離職（玩家說法）"
   },
   {
-   "text": "（下一個測試）清潔工達爾 15 小時縮短",
-   "why": "清潔度 100%、只用 3 張桌子；每少 1 小時省 6"
+   "text": "每天 08:00 截 HUD 現金",
+   "why": "先有基準線"
   }
  ],
  "asks": [
   {
-   "what": "統計數字 → 今日 →「員工」分頁，再加「所有」捲到底",
-   "why": "今天支出 912，比本週前 3 天平均約 376 多了約 536；要看是薪水、進貨還是別的",
-   "say": "這是今天的支出明細",
+   "what": "員工畫面（3 個人的班表、時薪、快樂度）",
+   "why": "快樂度 31% 要先處理",
+   "say": "這是員工畫面",
    "priority": 1
   },
   {
-   "what": "明天 08:00 的 HUD 現金",
-   "why": "真正的每日基準",
-   "say": "這是今天 08:00 現金",
+   "what": "今天的結算畫面（店鋪＋其他交易那頁）",
+   "why": "確認 412 是不是自己買菜（採購）、146 跟 148 的關係",
+   "say": "這是今天收盤",
    "priority": 2
   },
   {
-   "what": "上架 8 道菜的食譜畫面",
-   "why": "算食材重疊與每道菜成本",
-   "say": "這是食譜畫面",
+   "what": "冰箱的「奶油」是鮮奶油還是一般奶油",
+   "why": "決定濃湯、蛋糕、布朗尼能不能做",
+   "say": "奶油是○○",
    "priority": 3
   },
   {
-   "what": "鮮奶油在物品欄或商人的畫面",
-   "why": "確認它是 Cream 還是別的奶油",
-   "say": "這是鮮奶油",
+   "what": "現在菜單上是哪幾道",
+   "why": "看板的重疊表只算上架的菜",
+   "say": "菜單上有○○、○○",
    "priority": 4
+  },
+  {
+   "what": "明天 08:00 的 HUD 現金",
+   "why": "每日基準",
+   "say": "這是今天 08:00 現金",
+   "priority": 5
   }
  ],
  "log": [
@@ -136,6 +764,10 @@
   {
    "date": "2026-10-03",
    "note": "DAY 11 收盤、員工、總覽、統計（本週 8–11 天：營收 3401／支出 2041.63；本月：營收 6965.40／支出 4234.17）、評論"
+  },
+  {
+   "date": "2026-10-03",
+   "note": "DAY 12 口述：營收 442、員工 3 人、快樂度 31%；31 道食譜、冰箱 31 項"
   }
  ]
 }
